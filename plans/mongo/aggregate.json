@@ -1,0 +1,179 @@
+{
+  "command": {
+    "aggregate": "products",
+    "pipeline": [
+      {
+        "$group": {
+          "_id": "$categoryId",
+          "count": {
+            "$sum": 1
+          },
+          "avgPrice": {
+            "$avg": "$price"
+          }
+        }
+      }
+    ],
+    "cursor": {},
+    "$db": "benchmark"
+  },
+  "executionStats": {
+    "executionSuccess": true,
+    "nReturned": 5,
+    "executionTimeMillis": 13,
+    "totalKeysExamined": 0,
+    "totalDocsExamined": 10000,
+    "executionStages": {
+      "stage": "project",
+      "planNodeId": 3,
+      "nReturned": 5,
+      "executionTimeMillisEstimate": 10,
+      "opens": 1,
+      "closes": 1,
+      "saveState": 1,
+      "restoreState": 1,
+      "isEOF": 1,
+      "projections": {
+        "14": "newBsonObj(\"_id\", s8, \"count\", s12, \"avgPrice\", s13) "
+      },
+      "inputStage": {
+        "stage": "project",
+        "planNodeId": 3,
+        "nReturned": 5,
+        "executionTimeMillisEstimate": 10,
+        "opens": 1,
+        "closes": 1,
+        "saveState": 1,
+        "restoreState": 1,
+        "isEOF": 1,
+        "projections": {
+          "12": "(convert ( s9, int32) ?: s9) ",
+          "13": "\n    if (s11 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s10) / s11) \n"
+        },
+        "inputStage": {
+          "stage": "group",
+          "planNodeId": 3,
+          "nReturned": 5,
+          "executionTimeMillisEstimate": 10,
+          "opens": 1,
+          "closes": 1,
+          "saveState": 1,
+          "restoreState": 1,
+          "isEOF": 1,
+          "groupBySlots": [
+            8
+          ],
+          "expressions": {
+            "9": "count() ",
+            "10": "aggDoubleDoubleSum(s4) ",
+            "11": "sum(\n    if ((typeMatch(s4, 1088) ?: true) || !(isNumber(s4))) \n    then 0ll \n    else 1ll \n) ",
+            "initExprs": {
+              "9": null,
+              "10": null,
+              "11": null
+            }
+          },
+          "mergingExprs": {
+            "5": "sum(s5) ",
+            "6": "aggMergeDoubleDoubleSums(s6) ",
+            "7": "sum(s7) "
+          },
+          "usedDisk": false,
+          "spills": 0,
+          "spilledBytes": 0,
+          "spilledRecords": 0,
+          "spilledDataStorageSize": 0,
+          "inputStage": {
+            "stage": "project",
+            "planNodeId": 3,
+            "nReturned": 10000,
+            "executionTimeMillisEstimate": 0,
+            "opens": 1,
+            "closes": 1,
+            "saveState": 1,
+            "restoreState": 1,
+            "isEOF": 1,
+            "projections": {
+              "8": "(s3 ?: null) "
+            },
+            "inputStage": {
+              "stage": "scan",
+              "planNodeId": 1,
+              "nReturned": 10000,
+              "executionTimeMillisEstimate": 0,
+              "opens": 1,
+              "closes": 1,
+              "saveState": 1,
+              "restoreState": 1,
+              "isEOF": 1,
+              "numReads": 10000,
+              "recordSlot": 1,
+              "recordIdSlot": 2,
+              "scanFieldNames": [
+                "categoryId",
+                "price"
+              ],
+              "scanFieldSlots": [
+                3,
+                4
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "explainVersion": "2",
+  "ok": 1,
+  "queryPlanner": {
+    "namespace": "benchmark.products",
+    "parsedQuery": {},
+    "indexFilterSet": false,
+    "queryHash": "11D1A680",
+    "planCacheShapeHash": "11D1A680",
+    "planCacheKey": "E1E2F4DC",
+    "optimizationTimeMillis": 5,
+    "optimizedPipeline": true,
+    "maxIndexedOrSolutionsReached": false,
+    "maxIndexedAndSolutionsReached": false,
+    "maxScansToExplodeReached": false,
+    "prunedSimilarIndexes": false,
+    "winningPlan": {
+      "isCached": false,
+      "queryPlan": {
+        "stage": "GROUP",
+        "planNodeId": 3,
+        "inputStage": {
+          "stage": "COLLSCAN",
+          "planNodeId": 1,
+          "filter": {},
+          "direction": "forward"
+        }
+      },
+      "slotBasedPlan": {
+        "slots": "$$RESULT=s14 env: {  }",
+        "stages": "[3] project [s14 = newBsonObj(\"_id\", s8, \"count\", s12, \"avgPrice\", s13)] \n[3] project [s12 = (convert ( s9, int32) ?: s9), s13 = \n    if (s11 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s10) / s11) \n] \n[3] group [s8] [s9 = count(), s10 = aggDoubleDoubleSum(s4), s11 = sum(\n    if ((typeMatch(s4, 1088) ?: true) || !(isNumber(s4))) \n    then 0ll \n    else 1ll \n)] spillSlots[s5, s6, s7] mergingExprs[sum(s5), aggMergeDoubleDoubleSums(s6), sum(s7)] \n[3] project [s8 = (s3 ?: null)] \n[1] scan s1 s2 none none none none none none [s3 = categoryId, s4 = price] @\"71ab79a1-e5a0-4628-9484-227de98e244f\" true false "
+      }
+    },
+    "rejectedPlans": []
+  },
+  "queryShapeHash": "B37AEF199D094C7962E0F0430AEB82F49BEA66D6AEDB80A8D7778FD00018347D",
+  "serverInfo": {
+    "host": "ce8c88322dba",
+    "port": 27017,
+    "version": "8.2.11",
+    "gitVersion": "ee01d36638a00a07a6aa42ee80a125890f11aeed"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  }
+}

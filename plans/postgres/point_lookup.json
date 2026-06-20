@@ -1,0 +1,27 @@
+[
+  {
+    "Plan": {
+      "Node Type": "Index Scan",
+      "Parallel Aware": false,
+      "Async Capable": false,
+      "Scan Direction": "Forward",
+      "Index Name": "products_pkey",
+      "Relation Name": "products",
+      "Alias": "products",
+      "Startup Cost": 0.29,
+      "Total Cost": 8.30,
+      "Plan Rows": 1,
+      "Plan Width": 93,
+      "Actual Startup Time": 0.012,
+      "Actual Total Time": 0.013,
+      "Actual Rows": 1,
+      "Actual Loops": 1,
+      "Index Cond": "(id = '3538f56c-3c11-4662-a002-a4556780f0d0'::uuid)",
+      "Rows Removed by Index Recheck": 0
+    },
+    "Planning Time": 0.183,
+    "Triggers": [
+    ],
+    "Execution Time": 0.039
+  }
+]

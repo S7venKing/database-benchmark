@@ -1,0 +1,141 @@
+{
+  "command": {
+    "find": "products",
+    "filter": {
+      "price": {
+        "$gte": 100,
+        "$lte": 500
+      }
+    },
+    "$db": "benchmark"
+  },
+  "executionStats": {
+    "executionSuccess": true,
+    "nReturned": 4008,
+    "executionTimeMillis": 5,
+    "totalKeysExamined": 4008,
+    "totalDocsExamined": 4008,
+    "executionStages": {
+      "isCached": false,
+      "stage": "FETCH",
+      "nReturned": 4008,
+      "executionTimeMillisEstimate": 0,
+      "works": 4009,
+      "advanced": 4008,
+      "needTime": 0,
+      "needYield": 0,
+      "saveState": 0,
+      "restoreState": 0,
+      "isEOF": 1,
+      "docsExamined": 4008,
+      "alreadyHasObj": 0,
+      "inputStage": {
+        "stage": "IXSCAN",
+        "nReturned": 4008,
+        "executionTimeMillisEstimate": 0,
+        "works": 4009,
+        "advanced": 4008,
+        "needTime": 0,
+        "needYield": 0,
+        "saveState": 0,
+        "restoreState": 0,
+        "isEOF": 1,
+        "keyPattern": {
+          "price": 1
+        },
+        "indexName": "price_1",
+        "isMultiKey": false,
+        "multiKeyPaths": {
+          "price": []
+        },
+        "isUnique": false,
+        "isSparse": false,
+        "isPartial": false,
+        "indexVersion": 2,
+        "direction": "forward",
+        "indexBounds": {
+          "price": [
+            "[100, 500]"
+          ]
+        },
+        "keysExamined": 4008,
+        "seeks": 1,
+        "dupsTested": 0,
+        "dupsDropped": 0
+      }
+    }
+  },
+  "explainVersion": "1",
+  "ok": 1,
+  "queryPlanner": {
+    "namespace": "benchmark.products",
+    "parsedQuery": {
+      "$and": [
+        {
+          "price": {
+            "$lte": 500
+          }
+        },
+        {
+          "price": {
+            "$gte": 100
+          }
+        }
+      ]
+    },
+    "indexFilterSet": false,
+    "queryHash": "4AA4CFA3",
+    "planCacheShapeHash": "4AA4CFA3",
+    "planCacheKey": "05BF9BB7",
+    "optimizationTimeMillis": 0,
+    "maxIndexedOrSolutionsReached": false,
+    "maxIndexedAndSolutionsReached": false,
+    "maxScansToExplodeReached": false,
+    "prunedSimilarIndexes": false,
+    "winningPlan": {
+      "isCached": false,
+      "stage": "FETCH",
+      "inputStage": {
+        "stage": "IXSCAN",
+        "keyPattern": {
+          "price": 1
+        },
+        "indexName": "price_1",
+        "isMultiKey": false,
+        "multiKeyPaths": {
+          "price": []
+        },
+        "isUnique": false,
+        "isSparse": false,
+        "isPartial": false,
+        "indexVersion": 2,
+        "direction": "forward",
+        "indexBounds": {
+          "price": [
+            "[100, 500]"
+          ]
+        }
+      }
+    },
+    "rejectedPlans": []
+  },
+  "queryShapeHash": "4B3FFC34243F316B11B0C604B3D8DBFAA51D90BBD29407259723759CB1725BD3",
+  "serverInfo": {
+    "host": "ce8c88322dba",
+    "port": 27017,
+    "version": "8.2.11",
+    "gitVersion": "ee01d36638a00a07a6aa42ee80a125890f11aeed"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  }
+}

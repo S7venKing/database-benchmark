@@ -1,0 +1,42 @@
+[
+  {
+    "shape": "point_lookup",
+    "engine": "postgres",
+    "timeMs": 0.039
+  },
+  {
+    "shape": "range_scan",
+    "engine": "postgres",
+    "timeMs": 2.129
+  },
+  {
+    "shape": "aggregate",
+    "engine": "postgres",
+    "timeMs": 2.99
+  },
+  {
+    "shape": "join",
+    "engine": "postgres",
+    "timeMs": 2.276
+  },
+  {
+    "shape": "point_lookup",
+    "engine": "mongo",
+    "timeMs": 0
+  },
+  {
+    "shape": "range_scan",
+    "engine": "mongo",
+    "timeMs": 0
+  },
+  {
+    "shape": "aggregate",
+    "engine": "mongo",
+    "timeMs": 0
+  },
+  {
+    "shape": "lookup",
+    "engine": "mongo",
+    "timeMs": 0
+  }
+]
