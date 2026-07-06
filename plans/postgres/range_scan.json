@@ -7,19 +7,19 @@
       "Relation Name": "products",
       "Alias": "products",
       "Startup Cost": 0.00,
-      "Total Cost": 384.96,
-      "Plan Rows": 5164,
-      "Plan Width": 93,
-      "Actual Startup Time": 0.028,
-      "Actual Total Time": 1.787,
-      "Actual Rows": 4008,
+      "Total Cost": 387.84,
+      "Plan Rows": 5571,
+      "Plan Width": 91,
+      "Actual Startup Time": 0.013,
+      "Actual Total Time": 2.205,
+      "Actual Rows": 4265,
       "Actual Loops": 1,
       "Filter": "((price >= '100'::numeric) AND (price <= '500'::numeric))",
-      "Rows Removed by Filter": 5992
+      "Rows Removed by Filter": 5735
     },
-    "Planning Time": 0.373,
+    "Planning Time": 0.260,
     "Triggers": [
     ],
-    "Execution Time": 1.899
+    "Execution Time": 2.328
   }
 ]

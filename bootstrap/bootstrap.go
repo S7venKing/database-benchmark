@@ -27,6 +27,10 @@ type SeedReport struct {
 	}
 }
 
+type SeedOptions struct {
+	ForceReset bool
+}
+
 func Migrate(ctx context.Context, pgConn *pgx.Conn, mongoDB *mongo.Database) error {
 	pgSeeder := &pgseeder.Seeder{Conn: pgConn}
 	if err := pgSeeder.CreateSchema(ctx, pgConn); err != nil {
@@ -37,15 +41,15 @@ func Migrate(ctx context.Context, pgConn *pgx.Conn, mongoDB *mongo.Database) err
 	return mongoSeeder.CreateSchema(ctx, mongoDB)
 }
 
-func Seed(ctx context.Context, fixture models.Fixture, pgConn *pgx.Conn, mongoDB *mongo.Database) (SeedReport, error) {
+func Seed(ctx context.Context, fixture models.Fixture, pgConn *pgx.Conn, mongoDB *mongo.Database, options SeedOptions) (SeedReport, error) {
 	pgSeeder := &pgseeder.Seeder{Conn: pgConn}
 	mongoSeeder := &mongoseeder.Seeder{DB: mongoDB}
 
-	if err := pgSeeder.Seed(ctx, fixture); err != nil {
+	if err := pgSeeder.Seed(ctx, fixture, options.ForceReset); err != nil {
 		return SeedReport{}, err
 	}
 
-	if err := mongoSeeder.Seed(ctx, fixture); err != nil {
+	if err := mongoSeeder.Seed(ctx, fixture, options.ForceReset); err != nil {
 		return SeedReport{}, err
 	}
 
@@ -79,6 +83,10 @@ func Seed(ctx context.Context, fixture models.Fixture, pgConn *pgx.Conn, mongoDB
 }
 
 func MigrateAndSeed(ctx context.Context, fixturePath string) (SeedReport, error) {
+	return MigrateAndSeedWithOptions(ctx, fixturePath, SeedOptions{})
+}
+
+func MigrateAndSeedWithOptions(ctx context.Context, fixturePath string, options SeedOptions) (SeedReport, error) {
 	fixture, err := loadFixture(resolveFixturePath(fixturePath))
 	if err != nil {
 		return SeedReport{}, err
@@ -102,7 +110,7 @@ func MigrateAndSeed(ctx context.Context, fixturePath string) (SeedReport, error)
 		return SeedReport{}, err
 	}
 
-	report, err := Seed(ctx, fixture, pgConn, mongoDB)
+	report, err := Seed(ctx, fixture, pgConn, mongoDB, options)
 	if err != nil {
 		return SeedReport{}, err
 	}

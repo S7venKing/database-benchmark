@@ -2,14 +2,14 @@
   "command": {
     "find": "products",
     "filter": {
-      "id": "493ff9b7-c381-4cdb-afa8-a881d3f9f388"
+      "id": "b24d6aa5-9f0c-49cc-ad73-291a603b9b7b"
     },
     "$db": "benchmark"
   },
   "executionStats": {
     "executionSuccess": true,
     "nReturned": 1,
-    "executionTimeMillis": 6,
+    "executionTimeMillis": 3,
     "totalKeysExamined": 0,
     "totalDocsExamined": 10000,
     "executionStages": {
@@ -17,11 +17,11 @@
       "stage": "COLLSCAN",
       "filter": {
         "id": {
-          "$eq": "493ff9b7-c381-4cdb-afa8-a881d3f9f388"
+          "$eq": "b24d6aa5-9f0c-49cc-ad73-291a603b9b7b"
         }
       },
       "nReturned": 1,
-      "executionTimeMillisEstimate": 0,
+      "executionTimeMillisEstimate": 3,
       "works": 10001,
       "advanced": 1,
       "needTime": 9999,
@@ -39,7 +39,7 @@
     "namespace": "benchmark.products",
     "parsedQuery": {
       "id": {
-        "$eq": "493ff9b7-c381-4cdb-afa8-a881d3f9f388"
+        "$eq": "b24d6aa5-9f0c-49cc-ad73-291a603b9b7b"
       }
     },
     "indexFilterSet": false,
@@ -56,7 +56,7 @@
       "stage": "COLLSCAN",
       "filter": {
         "id": {
-          "$eq": "493ff9b7-c381-4cdb-afa8-a881d3f9f388"
+          "$eq": "b24d6aa5-9f0c-49cc-ad73-291a603b9b7b"
         }
       },
       "direction": "forward"

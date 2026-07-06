@@ -19,15 +19,15 @@
   },
   "executionStats": {
     "executionSuccess": true,
-    "nReturned": 5,
-    "executionTimeMillis": 8,
+    "nReturned": 20,
+    "executionTimeMillis": 9,
     "totalKeysExamined": 0,
     "totalDocsExamined": 10000,
     "executionStages": {
       "stage": "project",
       "planNodeId": 3,
-      "nReturned": 5,
-      "executionTimeMillisEstimate": 0,
+      "nReturned": 20,
+      "executionTimeMillisEstimate": 3,
       "opens": 1,
       "closes": 1,
       "saveState": 0,
@@ -39,8 +39,8 @@
       "inputStage": {
         "stage": "project",
         "planNodeId": 3,
-        "nReturned": 5,
-        "executionTimeMillisEstimate": 0,
+        "nReturned": 20,
+        "executionTimeMillisEstimate": 3,
         "opens": 1,
         "closes": 1,
         "saveState": 0,
@@ -53,8 +53,8 @@
         "inputStage": {
           "stage": "group",
           "planNodeId": 3,
-          "nReturned": 5,
-          "executionTimeMillisEstimate": 0,
+          "nReturned": 20,
+          "executionTimeMillisEstimate": 3,
           "opens": 1,
           "closes": 1,
           "saveState": 0,
@@ -87,7 +87,7 @@
             "stage": "project",
             "planNodeId": 3,
             "nReturned": 10000,
-            "executionTimeMillisEstimate": 0,
+            "executionTimeMillisEstimate": 3,
             "opens": 1,
             "closes": 1,
             "saveState": 0,
@@ -100,7 +100,7 @@
               "stage": "scan",
               "planNodeId": 1,
               "nReturned": 10000,
-              "executionTimeMillisEstimate": 0,
+              "executionTimeMillisEstimate": 3,
               "opens": 1,
               "closes": 1,
               "saveState": 0,
@@ -152,7 +152,7 @@
       },
       "slotBasedPlan": {
         "slots": "$$RESULT=s14 env: {  }",
-        "stages": "[3] project [s14 = newBsonObj(\"_id\", s8, \"count\", s12, \"avgPrice\", s13)] \n[3] project [s12 = (convert ( s9, int32) ?: s9), s13 = \n    if (s11 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s10) / s11) \n] \n[3] group [s8] [s9 = count(), s10 = aggDoubleDoubleSum(s4), s11 = sum(\n    if ((typeMatch(s4, 1088) ?: true) || !(isNumber(s4))) \n    then 0ll \n    else 1ll \n)] spillSlots[s5, s6, s7] mergingExprs[sum(s5), aggMergeDoubleDoubleSums(s6), sum(s7)] \n[3] project [s8 = (s3 ?: null)] \n[1] scan s1 s2 none none none none none none [s3 = categoryId, s4 = price] @\"4ae53e0e-2963-47ce-ad89-4e5799e990b9\" true false "
+        "stages": "[3] project [s14 = newBsonObj(\"_id\", s8, \"count\", s12, \"avgPrice\", s13)] \n[3] project [s12 = (convert ( s9, int32) ?: s9), s13 = \n    if (s11 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s10) / s11) \n] \n[3] group [s8] [s9 = count(), s10 = aggDoubleDoubleSum(s4), s11 = sum(\n    if ((typeMatch(s4, 1088) ?: true) || !(isNumber(s4))) \n    then 0ll \n    else 1ll \n)] spillSlots[s5, s6, s7] mergingExprs[sum(s5), aggMergeDoubleDoubleSums(s6), sum(s7)] \n[3] project [s8 = (s3 ?: null)] \n[1] scan s1 s2 none none none none none none [s3 = categoryId, s4 = price] @\"018d7968-0201-40c4-87c6-ef30652c28b1\" true false "
       }
     },
     "rejectedPlans": []

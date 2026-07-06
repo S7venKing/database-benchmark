@@ -1,47 +1,47 @@
 {
   "fixtureSpotCheck": {
-    "fixtureId": "493ff9b7-c381-4cdb-afa8-a881d3f9f388",
-    "pgName": "Product-c965a44e",
-    "mongoName": "Product-c965a44e",
-    "pgPrice": 349.87,
-    "mongoPrice": 349.87,
+    "fixtureId": "b24d6aa5-9f0c-49cc-ad73-291a603b9b7b",
+    "pgName": "Product-0000",
+    "mongoName": "Product-0000",
+    "pgPrice": 92,
+    "mongoPrice": 92,
     "match": true
   },
   "results": [
     {
       "engine": "postgres",
       "shape": "point_lookup",
-      "timeMs": 0.071
+      "timeMs": 0.195
     },
     {
       "engine": "postgres",
       "shape": "range_scan",
-      "timeMs": 1.899
+      "timeMs": 2.328
     },
     {
       "engine": "postgres",
       "shape": "aggregate",
-      "timeMs": 2.796
+      "timeMs": 2.66
     },
     {
       "engine": "postgres",
       "shape": "join_lookup",
-      "timeMs": 2.401
+      "timeMs": 2.772
     },
     {
       "engine": "mongo",
       "shape": "point_lookup",
-      "timeMs": 6
+      "timeMs": 3
     },
     {
       "engine": "mongo",
       "shape": "range_scan",
-      "timeMs": 7
+      "timeMs": 6
     },
     {
       "engine": "mongo",
       "shape": "aggregate",
-      "timeMs": 8
+      "timeMs": 9
     },
     {
       "engine": "mongo",

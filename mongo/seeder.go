@@ -61,14 +61,28 @@ func (s *Seeder) Count(ctx context.Context) (int64, int64, error) {
 	return categoriesCount, productsCount, nil
 }
 
-func (s *Seeder) Seed(ctx context.Context, fixture models.Fixture) error {
-
-	if err := s.DB.Collection("products").Drop(ctx); err != nil {
+func (s *Seeder) Seed(ctx context.Context, fixture models.Fixture, forceReset bool) error {
+	productsCount, err := s.DB.Collection("products").CountDocuments(ctx, bson.M{})
+	if err != nil {
 		return err
 	}
 
-	if err := s.DB.Collection("categories").Drop(ctx); err != nil {
+	categoriesCount, err := s.DB.Collection("categories").CountDocuments(ctx, bson.M{})
+	if err != nil {
 		return err
+	}
+
+	if !forceReset && productsCount == int64(len(fixture.Products)) && categoriesCount == int64(len(fixture.Categories)) {
+		return nil
+	}
+
+	if forceReset {
+		if err := s.DB.Collection("products").Drop(ctx); err != nil {
+			return err
+		}
+		if err := s.DB.Collection("categories").Drop(ctx); err != nil {
+			return err
+		}
 	}
 
 	categories := make([]interface{}, 0)
@@ -77,7 +91,7 @@ func (s *Seeder) Seed(ctx context.Context, fixture models.Fixture) error {
 		categories = append(categories, c)
 	}
 
-	_, err := s.DB.
+	_, err = s.DB.
 		Collection("categories").
 		InsertMany(ctx, categories)
 

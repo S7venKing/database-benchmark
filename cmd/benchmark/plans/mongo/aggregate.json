@@ -19,14 +19,14 @@
   },
   "executionStats": {
     "executionSuccess": true,
-    "nReturned": 5,
+    "nReturned": 20,
     "executionTimeMillis": 6,
     "totalKeysExamined": 0,
     "totalDocsExamined": 10000,
     "executionStages": {
       "stage": "project",
       "planNodeId": 3,
-      "nReturned": 5,
+      "nReturned": 20,
       "executionTimeMillisEstimate": 0,
       "opens": 1,
       "closes": 1,
@@ -39,7 +39,7 @@
       "inputStage": {
         "stage": "project",
         "planNodeId": 3,
-        "nReturned": 5,
+        "nReturned": 20,
         "executionTimeMillisEstimate": 0,
         "opens": 1,
         "closes": 1,
@@ -53,7 +53,7 @@
         "inputStage": {
           "stage": "group",
           "planNodeId": 3,
-          "nReturned": 5,
+          "nReturned": 20,
           "executionTimeMillisEstimate": 0,
           "opens": 1,
           "closes": 1,
@@ -152,7 +152,7 @@
       },
       "slotBasedPlan": {
         "slots": "$$RESULT=s14 env: {  }",
-        "stages": "[3] project [s14 = newBsonObj(\"_id\", s8, \"count\", s12, \"avgPrice\", s13)] \n[3] project [s12 = (convert ( s9, int32) ?: s9), s13 = \n    if (s11 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s10) / s11) \n] \n[3] group [s8] [s9 = count(), s10 = aggDoubleDoubleSum(s4), s11 = sum(\n    if ((typeMatch(s4, 1088) ?: true) || !(isNumber(s4))) \n    then 0ll \n    else 1ll \n)] spillSlots[s5, s6, s7] mergingExprs[sum(s5), aggMergeDoubleDoubleSums(s6), sum(s7)] \n[3] project [s8 = (s3 ?: null)] \n[1] scan s1 s2 none none none none none none [s3 = categoryId, s4 = price] @\"88db247b-ae14-48b8-80be-29205261b79c\" true false "
+        "stages": "[3] project [s14 = newBsonObj(\"_id\", s8, \"count\", s12, \"avgPrice\", s13)] \n[3] project [s12 = (convert ( s9, int32) ?: s9), s13 = \n    if (s11 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s10) / s11) \n] \n[3] group [s8] [s9 = count(), s10 = aggDoubleDoubleSum(s4), s11 = sum(\n    if ((typeMatch(s4, 1088) ?: true) || !(isNumber(s4))) \n    then 0ll \n    else 1ll \n)] spillSlots[s5, s6, s7] mergingExprs[sum(s5), aggMergeDoubleDoubleSums(s6), sum(s7)] \n[3] project [s8 = (s3 ?: null)] \n[1] scan s1 s2 none none none none none none [s3 = categoryId, s4 = price] @\"056607e0-6d59-4a6e-8ac2-f823c8f9eea5\" true false "
       }
     },
     "rejectedPlans": []

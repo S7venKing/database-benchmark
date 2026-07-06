@@ -54,16 +54,28 @@ func (s *Seeder) Count(ctx context.Context) (int64, int64, error) {
 	return categories, products, nil
 }
 
-func (s *Seeder) Seed(ctx context.Context, fixture models.Fixture) error {
-
-	_, err := s.Conn.Exec(ctx, `
-		TRUNCATE TABLE products RESTART IDENTITY CASCADE;
-		TRUNCATE TABLE categories RESTART IDENTITY CASCADE;
-	`)
-	if err != nil {
+func (s *Seeder) Seed(ctx context.Context, fixture models.Fixture, forceReset bool) error {
+	var productsCount int64
+	if err := s.Conn.QueryRow(ctx, `SELECT COUNT(*) FROM products`).Scan(&productsCount); err != nil {
 		return err
 	}
 
+	var categoriesCount int64
+	if err := s.Conn.QueryRow(ctx, `SELECT COUNT(*) FROM categories`).Scan(&categoriesCount); err != nil {
+		return err
+	}
+
+	if !forceReset && productsCount == int64(len(fixture.Products)) && categoriesCount == int64(len(fixture.Categories)) {
+		return nil
+	}
+
+	if forceReset {
+		if _, err := s.Conn.Exec(ctx, `TRUNCATE TABLE products RESTART IDENTITY CASCADE; TRUNCATE TABLE categories RESTART IDENTITY CASCADE;`); err != nil {
+			return err
+		}
+	}
+
+	var err error
 	for _, c := range fixture.Categories {
 		_, err = s.Conn.Exec(ctx, `
 			INSERT INTO categories(id,name)

@@ -5,6 +5,7 @@ import (
 	"benchmark/cmd/models"
 	"context"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -47,6 +48,8 @@ type mongoQuery struct {
 
 func main() {
 	ctx := context.Background()
+	forceReset := flag.Bool("reset", false, "drop and reseed both engines before benchmarking")
+	flag.Parse()
 
 	_ = os.MkdirAll("plans/postgres", 0o755)
 	_ = os.MkdirAll("plans/mongo", 0o755)
@@ -61,7 +64,7 @@ func main() {
 
 	spotCheckProduct := fixture.Products[0]
 
-	if _, err := bootstrap.MigrateAndSeed(ctx, resolveFixturePath("fixture/fixture.json")); err != nil {
+	if _, err := bootstrap.MigrateAndSeedWithOptions(ctx, resolveFixturePath("fixture/fixture.json"), bootstrap.SeedOptions{ForceReset: *forceReset}); err != nil {
 		panic(err)
 	}
 

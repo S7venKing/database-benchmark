@@ -11,17 +11,17 @@
       "Startup Cost": 0.29,
       "Total Cost": 8.30,
       "Plan Rows": 1,
-      "Plan Width": 93,
-      "Actual Startup Time": 0.014,
-      "Actual Total Time": 0.015,
+      "Plan Width": 91,
+      "Actual Startup Time": 0.016,
+      "Actual Total Time": 0.017,
       "Actual Rows": 1,
       "Actual Loops": 1,
-      "Index Cond": "(id = '493ff9b7-c381-4cdb-afa8-a881d3f9f388'::uuid)",
+      "Index Cond": "(id = 'b24d6aa5-9f0c-49cc-ad73-291a603b9b7b'::uuid)",
       "Rows Removed by Index Recheck": 0
     },
-    "Planning Time": 0.411,
+    "Planning Time": 0.445,
     "Triggers": [
     ],
-    "Execution Time": 0.058
+    "Execution Time": 0.067
   }
 ]
