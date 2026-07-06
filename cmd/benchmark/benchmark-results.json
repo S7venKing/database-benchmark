@@ -11,42 +11,42 @@
     {
       "engine": "postgres",
       "shape": "point_lookup",
-      "timeMs": 0.071
+      "timeMs": 0.058
     },
     {
       "engine": "postgres",
       "shape": "range_scan",
-      "timeMs": 1.899
+      "timeMs": 2.04
     },
     {
       "engine": "postgres",
       "shape": "aggregate",
-      "timeMs": 2.796
+      "timeMs": 2.275
     },
     {
       "engine": "postgres",
       "shape": "join_lookup",
-      "timeMs": 2.401
+      "timeMs": 2.05
     },
     {
       "engine": "mongo",
       "shape": "point_lookup",
-      "timeMs": 6
+      "timeMs": 4
     },
     {
       "engine": "mongo",
       "shape": "range_scan",
-      "timeMs": 7
+      "timeMs": 5
     },
     {
       "engine": "mongo",
       "shape": "aggregate",
-      "timeMs": 8
+      "timeMs": 6
     },
     {
       "engine": "mongo",
       "shape": "join_lookup",
-      "timeMs": 65
+      "timeMs": 55
     }
   ]
 }

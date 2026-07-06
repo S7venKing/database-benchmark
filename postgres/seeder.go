@@ -1,7 +1,7 @@
 package postgres
 
 import (
-	"benchmark/models"
+	"benchmark/cmd/models"
 	"context"
 
 	"github.com/jackc/pgx/v5"
@@ -11,7 +11,7 @@ type Seeder struct {
 	Conn *pgx.Conn
 }
 
-func (* Seeder) CreateSchema(ctx context.Context, conn *pgx.Conn) error {
+func (*Seeder) CreateSchema(ctx context.Context, conn *pgx.Conn) error {
 	_, err := conn.Exec(ctx, `
 		CREATE TABLE IF NOT EXISTS categories (
 			id INT PRIMARY KEY,
@@ -38,6 +38,20 @@ func (* Seeder) CreateSchema(ctx context.Context, conn *pgx.Conn) error {
 	`)
 
 	return err
+}
+
+func (s *Seeder) Count(ctx context.Context) (int64, int64, error) {
+	var categories int64
+	if err := s.Conn.QueryRow(ctx, `SELECT COUNT(*) FROM categories`).Scan(&categories); err != nil {
+		return 0, 0, err
+	}
+
+	var products int64
+	if err := s.Conn.QueryRow(ctx, `SELECT COUNT(*) FROM products`).Scan(&products); err != nil {
+		return 0, 0, err
+	}
+
+	return categories, products, nil
 }
 
 func (s *Seeder) Seed(ctx context.Context, fixture models.Fixture) error {

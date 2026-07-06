@@ -19,9 +19,9 @@
       "Index Cond": "(id = '493ff9b7-c381-4cdb-afa8-a881d3f9f388'::uuid)",
       "Rows Removed by Index Recheck": 0
     },
-    "Planning Time": 0.594,
+    "Planning Time": 0.411,
     "Triggers": [
     ],
-    "Execution Time": 0.071
+    "Execution Time": 0.058
   }
 ]

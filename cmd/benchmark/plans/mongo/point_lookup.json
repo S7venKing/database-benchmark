@@ -9,7 +9,7 @@
   "executionStats": {
     "executionSuccess": true,
     "nReturned": 1,
-    "executionTimeMillis": 6,
+    "executionTimeMillis": 4,
     "totalKeysExamined": 0,
     "totalDocsExamined": 10000,
     "executionStages": {
@@ -21,7 +21,7 @@
         }
       },
       "nReturned": 1,
-      "executionTimeMillisEstimate": 0,
+      "executionTimeMillisEstimate": 3,
       "works": 10001,
       "advanced": 1,
       "needTime": 9999,

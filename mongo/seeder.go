@@ -1,7 +1,7 @@
 package mongo
 
 import (
-	"benchmark/models"
+	"benchmark/cmd/models"
 	"context"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -45,6 +45,20 @@ func (*Seeder) CreateSchema(
 		})
 
 	return err
+}
+
+func (s *Seeder) Count(ctx context.Context) (int64, int64, error) {
+	categoriesCount, err := s.DB.Collection("categories").CountDocuments(ctx, bson.M{})
+	if err != nil {
+		return 0, 0, err
+	}
+
+	productsCount, err := s.DB.Collection("products").CountDocuments(ctx, bson.M{})
+	if err != nil {
+		return 0, 0, err
+	}
+
+	return categoriesCount, productsCount, nil
 }
 
 func (s *Seeder) Seed(ctx context.Context, fixture models.Fixture) error {

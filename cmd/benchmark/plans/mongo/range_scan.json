@@ -12,14 +12,14 @@
   "executionStats": {
     "executionSuccess": true,
     "nReturned": 4008,
-    "executionTimeMillis": 7,
+    "executionTimeMillis": 5,
     "totalKeysExamined": 4008,
     "totalDocsExamined": 4008,
     "executionStages": {
       "isCached": false,
       "stage": "FETCH",
       "nReturned": 4008,
-      "executionTimeMillisEstimate": 5,
+      "executionTimeMillisEstimate": 0,
       "works": 4009,
       "advanced": 4008,
       "needTime": 0,

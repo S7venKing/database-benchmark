@@ -10,8 +10,8 @@
       "Total Cost": 417.18,
       "Plan Rows": 5,
       "Plan Width": 44,
-      "Actual Startup Time": 2.638,
-      "Actual Total Time": 2.642,
+      "Actual Startup Time": 2.198,
+      "Actual Total Time": 2.202,
       "Actual Rows": 5,
       "Actual Loops": 1,
       "Group Key": ["category_id"],
@@ -31,16 +31,16 @@
           "Total Cost": 320.64,
           "Plan Rows": 12864,
           "Plan Width": 10,
-          "Actual Startup Time": 0.009,
-          "Actual Total Time": 0.746,
+          "Actual Startup Time": 0.008,
+          "Actual Total Time": 0.580,
           "Actual Rows": 10000,
           "Actual Loops": 1
         }
       ]
     },
-    "Planning Time": 0.446,
+    "Planning Time": 0.178,
     "Triggers": [
     ],
-    "Execution Time": 2.796
+    "Execution Time": 2.275
   }
 ]

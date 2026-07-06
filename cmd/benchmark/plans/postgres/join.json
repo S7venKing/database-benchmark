@@ -9,8 +9,8 @@
       "Total Cost": 372.05,
       "Plan Rows": 12864,
       "Plan Width": 251,
-      "Actual Startup Time": 0.059,
-      "Actual Total Time": 2.158,
+      "Actual Startup Time": 0.050,
+      "Actual Total Time": 1.840,
       "Actual Rows": 10000,
       "Actual Loops": 1,
       "Inner Unique": true,
@@ -27,8 +27,8 @@
           "Total Cost": 320.64,
           "Plan Rows": 12864,
           "Plan Width": 37,
-          "Actual Startup Time": 0.015,
-          "Actual Total Time": 0.697,
+          "Actual Startup Time": 0.014,
+          "Actual Total Time": 0.571,
           "Actual Rows": 10000,
           "Actual Loops": 1
         },
@@ -41,8 +41,8 @@
           "Total Cost": 13.20,
           "Plan Rows": 320,
           "Plan Width": 222,
-          "Actual Startup Time": 0.023,
-          "Actual Total Time": 0.025,
+          "Actual Startup Time": 0.018,
+          "Actual Total Time": 0.019,
           "Actual Rows": 5,
           "Actual Loops": 1,
           "Hash Buckets": 1024,
@@ -62,8 +62,8 @@
               "Total Cost": 13.20,
               "Plan Rows": 320,
               "Plan Width": 222,
-              "Actual Startup Time": 0.007,
-              "Actual Total Time": 0.008,
+              "Actual Startup Time": 0.006,
+              "Actual Total Time": 0.007,
               "Actual Rows": 5,
               "Actual Loops": 1
             }
@@ -71,9 +71,9 @@
         }
       ]
     },
-    "Planning Time": 0.713,
+    "Planning Time": 0.325,
     "Triggers": [
     ],
-    "Execution Time": 2.401
+    "Execution Time": 2.050
   }
 ]
